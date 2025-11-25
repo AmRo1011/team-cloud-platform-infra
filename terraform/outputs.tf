@@ -39,3 +39,89 @@ output "kafka_sg_id" {
   description = "Security group for kafka cluster"
   value       = aws_security_group.kafka_sg.id
 }
+#############################################
+# VPC
+#############################################
+
+output "vpc_id" {
+  description = "Main VPC ID"
+  value       = aws_vpc.main.id
+}
+
+#############################################
+# Subnets
+#############################################
+
+output "public_subnet_ids" {
+  description = "Public Subnets (Nginx / ALB)"
+  value = [
+    aws_subnet.public_1.id,
+    aws_subnet.public_2.id
+  ]
+}
+
+output "private_subnet_ids" {
+  description = "Private Subnets (Microservices / EC2)"
+  value = [
+    aws_subnet.private_1.id,
+    aws_subnet.private_2.id
+  ]
+}
+
+output "db_subnet_ids" {
+  description = "DB Subnets (RDS)"
+  value = [
+    aws_subnet.db_1.id,
+    aws_subnet.db_2.id
+  ]
+}
+
+output "kafka_subnet_ids" {
+  description = "Kafka Subnets"
+  value = [
+    aws_subnet.kafka_1.id,
+    aws_subnet.kafka_2.id
+  ]
+}
+
+#############################################
+# Security Groups
+#############################################
+
+output "alb_sg_id" {
+  description = "ALB Security Group"
+  value       = aws_security_group.alb_sg.id
+}
+
+output "app_sg_id" {
+  description = "Application Layer SG"
+  value       = aws_security_group.app_sg.id
+}
+
+output "kafka_sg_id" {
+  description = "Kafka Cluster SG"
+  value       = aws_security_group.kafka_sg.id
+}
+
+#############################################
+# (Optional) Route Tables
+#############################################
+
+output "public_route_table_id" {
+  value = aws_route_table.public_rt.id
+}
+
+output "private_route_table_ids" {
+  value = [
+    aws_route_table.private_rt_1.id,
+    aws_route_table.private_rt_2.id
+  ]
+}
+
+output "db_route_table_id" {
+  value = aws_route_table.db_rt.id
+}
+
+output "kafka_route_table_id" {
+  value = aws_route_table.kafka_rt.id
+}
